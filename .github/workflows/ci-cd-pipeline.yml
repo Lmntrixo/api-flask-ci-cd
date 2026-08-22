@@ -50,7 +50,7 @@ jobs:
          run: aws ecr get-login-password --region eu-central-1 | \
             docker login --Username AWS --password-stdin 875691018539.dkr.ecr.eu-central-1.amazonaws.com
 
-       - name: push docker-image to ECR
+       - name: push docker-image to ECR registry
          run: |
             docker tag my-pyapp:${{ github.sha }} 875691018539.dkr.ecr.eu-central-1.amazonaws.com/my-pyapp:${{ github.sha }}
             docker push 875691018539.dkr.ecr.eu-central-1.amazonaws.com/my-pyapp:${{ github.sha }}
