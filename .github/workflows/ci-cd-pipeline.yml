@@ -11,7 +11,7 @@ jobs:
        - name: recuperer le code
          uses: actions/checkout@v4
        - name: setup python
-         uses: action/setup-python
+         uses: actions/setup-python@v4
          with:
            python-version: '3.12'
            cache: pip
@@ -36,7 +36,7 @@ jobs:
          id: id-tag
          run: |
           docker build -t my-pyapp:${{ github.sha }} .
-          echo "tag=sha-${{ github.sha }}" >> "$GITHUB_OUPUT"
+          echo "tag=sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
 
        - name: login aws
          uses: aws-actions/configure-aws-credentials@v4
