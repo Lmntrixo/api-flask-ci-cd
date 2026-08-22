@@ -43,6 +43,6 @@ jobs:
        - name: login aws
          uses: aws-actions/configure-aws-credentials@v4
          with:
-           role-to-assume: arn:aws:iam::****:role/GitHubActionsRole
+           role-to-assume: arn:aws:iam::875691018539:role/GitHubActionsRole
            aws-region: eu-central-1
 
