@@ -32,8 +32,9 @@ jobs:
      outputs:
        image_tag: ${{ steps.id-tag.outputs.tag }}
      steps:
-       - name: build-docker-image
+       - name: recuperer le code
          uses: actions/checkout@v4
+       - name: build-docker-image
          id: id-tag
          run: |
           docker build -t my-pyapp:${{ github.sha }} .
