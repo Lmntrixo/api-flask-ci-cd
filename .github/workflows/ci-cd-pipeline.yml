@@ -40,7 +40,7 @@ jobs:
           docker build -t my-pyapp:${{ github.sha }} .
           echo "tag=sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
 
-       - name: login aws
+       - name: login To aws
          uses: aws-actions/configure-aws-credentials@v4
          with:
            role-to-assume: arn:aws:iam::875691018539:role/GithubWorkflowRole
