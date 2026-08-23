@@ -43,7 +43,7 @@ jobs:
        - name: login To aws
          uses: aws-actions/configure-aws-credentials@v4
          with:
-           role-to-assume: arn:aws:iam::875691018539:role/GithubWorkflowRole
+           role-to-assume: arn:aws:iam::875691018539:role/githubworkflowRoles
            aws-region: eu-central-1
 
        - name: login to ECR
