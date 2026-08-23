@@ -40,6 +40,12 @@ jobs:
           docker build -t my-pyapp:${{ github.sha }} .
           echo "tag=sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
 
+       - name: Inspecter le Jeton OIDC GitHub (Debug JWT)
+         run: |
+           TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
+           echo "=== Contenu du jeton décodé ==="
+           echo $TOKEN | cut -d. -f2 | base64 -d 2>/dev/null | jq .
+
        - name: login To aws
          uses: aws-actions/configure-aws-credentials@v4
          with:
