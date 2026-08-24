@@ -72,26 +72,24 @@ jobs:
        - name: log to aws
          uses: aws-actions/configure-aws-credentials@v4
          with:
-          role-to-assume: arn:aws:iam::875691018539:role/githubworkflowRoles
-          aws-region: eu-central-1
-
-
+           role-to-assume: arn:aws:iam::875691018539:role/githubworkflowRoles
+           aws-region: eu-central-1
        - name: deploying on EC2 with ssm
          run: |
            COMMAND_ID=$(aws ssm send-command \
-           --instances-ids "i-0ebfb49f3f35806cd" \
-           --document-name "AWS-RunShellScript" \
-           --parameters 'command=[
-             "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 875691018539.dkr.ecr.eu-central-1.amazonaws.com"
-             "docker pull 875691018539.dkr.ecr.eu-central-1.amazonaws.com/my-pyapp:${{ github.sha }}",
-             "docker stop my-pyapp || true",
-             "docker rm -m my-pyapp || true",
-             "docker run -d --name my-pyapp --restart always -p 80:5000 875691018539.dkr.ecr.eu-central-1.amazonaws.com/my-pyapp:${{ github.sha }}"
+             --instances-ids "i-0ebfb49f3f35806cd" \
+             --document-name "AWS-RunShellScript" \
+             --parameters 'command=[
+               "aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 875691018539.dkr.ecr.eu-central-1.amazonaws.com",
+               "docker pull 875691018539.dkr.ecr.eu-central-1.amazonaws.com/my-pyapp:${{ github.sha }}",
+               "docker stop my-pyapp || true",
+               "docker rm -m my-pyapp || true",
+               "docker run -d --name my-pyapp --restart always -p 80:5000 875691018539.dkr.ecr.eu-central-1.amazonaws.com/my-pyapp:${{ github.sha }}"
 
-                    ]') \
-          --region eu-central-1 \
-          --querry "command.Command-Id" \
-          --output text)
+              ]' \
+            --region eu-central-1 \
+            --querry "command.Command-Id" \
+            --output text)
 
            aws ssm wait command-executed \
              --command-id "$COMMAND-ID"
