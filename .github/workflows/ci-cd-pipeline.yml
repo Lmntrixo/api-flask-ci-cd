@@ -72,8 +72,9 @@ jobs:
        - name: log to aws
          uses: aws-actions/configure-aws-credentials@v4
          with:
-           role-to-assume: arn:aws:iam::875691018539:role/githubworkflowRoles
-           aws-region: eu-central-1
+          role-to-assume: arn:aws:iam::875691018539:role/githubworkflowRoles
+          aws-region: eu-central-1
+
 
        - name: deploying on EC2 with ssm
          run: |
