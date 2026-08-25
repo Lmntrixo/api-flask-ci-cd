@@ -91,6 +91,15 @@ jobs:
             --query "Command.CommandId" \
             --output text)
 
+             #1. ON AFFICHE LE CONTENU DE LA VARIABLE ICI
+                echo "Le contenu de la variable COMMAND_ID est : '$COMMAND_ID'"
+
+            # 2. ON SÉCURISE : Si la variable est vide, on arrête tout de suite le script
+              if [ -z "$COMMAND_ID" ]; then
+                echo "❌ Erreur : L'AWS CLI n'a pas pu générer de CommandId. Regardez les lignes du dessus dans les logs pour voir l'erreur AWS brute."
+                exit 1
+              fi
+
            aws ssm wait command-executed \
              --command-id "$COMMAND_ID" \
              --instance-id "i-0ebfb49f3f35806cd" \
