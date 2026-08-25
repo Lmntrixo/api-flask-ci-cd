@@ -100,10 +100,10 @@ jobs:
              --command-id "COMMAND-ID" \
              --instance-id "i-0ebfb49f3f35806cd" \
              --region eu-central-1 \
-             query "Status" --output text)
-           echo " ssm command status: $STATUT"
+             --query "Status" --output text)
+           echo " ssm command status: $STATUS"
 
-           if [ "$STATUS" != "success"], then
+           if [ "$STATUS" != "success"]; then
              exit 1
            fi
 
