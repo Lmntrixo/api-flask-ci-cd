@@ -13,7 +13,7 @@ def version():
 
 
 @app.route("/caline")
-def version():
+def caline():
     return jsonify(version="i love you more than everything Caline"), 200
 
 
