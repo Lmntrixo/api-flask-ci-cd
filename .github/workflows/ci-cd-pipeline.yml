@@ -97,7 +97,7 @@ jobs:
              --region eu-central-1
 
            STATUS=$(aws ssm get-command-invocation \
-             --command-id "COMMAND-ID" \
+             --command-id "$COMMAND-ID" \
              --instance-id "i-0ebfb49f3f35806cd" \
              --region eu-central-1 \
              --query "Status" --output text)
