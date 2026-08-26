@@ -39,6 +39,14 @@ jobs:
          run: |
           docker build -t my-pyapp:${{ github.sha }} .
           echo "tag=sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
+       - name: scan of vulnerabilities with trivy
+         uses: aquasecurity/trivy-action@v0.20.0
+         with:
+           image-ref: my-pyapp:${{ github.sha }}
+           format: table
+           severity: "CRITICAL"
+           exit-code: '1'
+           trivyignore: .trivyignore
 
        - name: Inspecter le Jeton OIDC GitHub (Debug JWT)
          run: |
