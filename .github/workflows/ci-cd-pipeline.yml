@@ -136,7 +136,7 @@ jobs:
          uses: aws-actions/configure-aws-credentials@v5
          with:
            role-to-assume: arn:aws:iam::875691018539:role/githubWorkflow-production
-           region: eu-central-1
+           aws-region: eu-central-1
        - name: deploy on ec2-production using ssm
          run: |
            COMMAND_ID=$(aws ssm send-command \
