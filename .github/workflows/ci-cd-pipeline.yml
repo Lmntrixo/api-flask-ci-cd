@@ -130,7 +130,7 @@ jobs:
      permissions:
        token-id: write
        contents: read
-     environnemnt: production
+     environement: production
      steps:
        - name: log to aws
          uses: aws-actions/configure-aws-credentials@v5
