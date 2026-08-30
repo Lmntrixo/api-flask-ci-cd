@@ -128,9 +128,9 @@ jobs:
      runs-on: ubuntu-latest
      needs: deploy-to-ec2-stagging
      permissions:
-       token-id: write
+       id-token: write
        contents: read
-     environement: production
+     environment: production
      steps:
        - name: log to aws
          uses: aws-actions/configure-aws-credentials@v5
